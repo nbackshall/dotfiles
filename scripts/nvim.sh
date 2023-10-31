@@ -14,7 +14,7 @@ do_install() {
   sudo wget https://github.com/neovim/neovim/releases/latest/download/nvim.appimage -O /usr/bin/nvim
   sudo chmod +x /usr/bin/nvim
   sudo apt-get update
-  sudo apt-get install fuse3 libfuse2 -y
+  sudo apt-get install fuse3 libfuse2 nodejs -y
 }
 
 do_configure() {

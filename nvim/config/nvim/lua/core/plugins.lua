@@ -22,7 +22,7 @@ return require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip'
   use 'saadparwaiz1/cmp_luasnip'
   use 'hrsh7th/cmp-nvim-lsp'
-  use {'github/copilot.vim', branch = 'release' }
+  use 'github/copilot.vim'
 
   use {
     'williamboman/mason.nvim',
@@ -31,7 +31,6 @@ return require('packer').startup(function(use)
   }
   use {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.0',
     requires = { { 'nvim-lua/plenary.nvim'} }
   }
 
