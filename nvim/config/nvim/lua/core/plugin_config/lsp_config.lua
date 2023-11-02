@@ -4,6 +4,7 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 require('mason').setup()
 require('mason-lspconfig').setup({
   ensure_installed = {
+    'clangd',
     'lua_ls',
     'omnisharp_mono',
     'omnisharp',
