@@ -10,7 +10,13 @@ do_install() {
   fi
 
   info "[zsh] Install"
-  sudo apt install -y zsh
+
+  if [ "$(uname)" == "Darwin" ]; then
+    brew install zsh
+  elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    sudo apt-get update
+    sudo apt install -y zsh
+  fi
 }
 
 do_configure() {

@@ -7,7 +7,7 @@ source "$(pwd)/scripts/util.sh"
 DEBIAN_FRONTEND=noninteractive
 
 do_install() {
-    local packages=(
+    local shared_packages=(
         curl
         htop
         httpie
@@ -18,19 +18,28 @@ do_install() {
         unzip
         wget
         xclip
-        build-essential
-        cmake
-        libreadline-dev
-        ncurses-term
-        python3-pip
-        python3-venv
-        unrar
-        uuid-runtime
     )
 
     info "[pkg] Install"
-    sudo apt update
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y "${packages[@]}"
+
+    if [ "$(uname)" == "Darwin" ]; then
+        brew install "${shared_packages[@]}"
+    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+        local linux_packages=(
+            build-essential
+            cmake
+            dconf-cli
+            libreadline-dev
+            ncurses-term
+            python3-pip
+            units
+            unrar
+            uuid-runtime
+        )
+        sudo apt update
+        sudo DEBIAN_FRONTEND=noninteractive apt-get install -y "${shared_packages[@]}"
+        sudo DEBIAN_FRONTEND=noninteractive apt-get install -y "${linux_packages[@]}"
+    fi
 }
 
 main() {
