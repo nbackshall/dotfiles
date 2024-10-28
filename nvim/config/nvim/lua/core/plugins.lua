@@ -37,8 +37,8 @@ return require('packer').startup(function(use)
   use {
     'github/copilot.vim',
     config = function()
-      vim.cmd[[let g:copilot_filetypes = { 'markdown': v.true }]]
-    end,
+      vim.g.copilot_filetypes = { ['*'] = true }
+    end
   }
 
   -- Automatically set up your configuration after cloning packer.nvim

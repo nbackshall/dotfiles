@@ -79,3 +79,4 @@ wt() {
   cd "$root_dir/$1"
 }
 
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
