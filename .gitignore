@@ -1,0 +1,32 @@
+# Zsh specific
+*.zwc
+*.zwc.old
+*zcompdump*
+.zsh_history
+.zsh_sessions
+.zshrc.local
+.zshrc.private
+.zprofile.local
+.zcompcache/
+
+# Lua specific
+*.lua~
+*.luac
+.luarocks
+lua_modules/
+
+# Editor/IDE specific (common when working with lua)
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
