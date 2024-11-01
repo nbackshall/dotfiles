@@ -158,6 +158,45 @@ wt() {
   cd "$worktree_path"
 }
 
+# Copy file to clipboard
+fcp() {
+  if ! command -v fzf >/dev/null; then
+    echo "Error: fzf not installed"
+    return 1
+  fi
+
+  if ! file=$(fzf); then
+    return 1
+  fi
+
+  if [ ! -f $file ]; then
+    echo "Error: $file not found"
+    return 1
+  fi
+
+  if [ ! -r $file ]; then
+    echo "Error: $file is not readable"
+    return 1
+  fi
+
+  if command -v pbcopy >/dev/null; then
+    if ! cat $file | pbcopy; then
+      echo "Error: pbcopy failed to copy $file"
+      return 1
+    fi
+    echo "Copied $file to clipboard"
+  elif command -v xclip >/dev/null; then
+    if ! xclip -selection clipboard < $file; then
+      echo "Error: xclip failed to copy $file"
+      return 1
+    fi
+    echo "Copied $file to clipboard"
+  else
+    echo "Error: xclip or pbcopy not found"
+    return 1
+  fi
+}
+
 # Load local configurations if they exist
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 

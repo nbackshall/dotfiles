@@ -12,10 +12,10 @@ do_install() {
   info "[zsh] Install"
 
   if [ "$(uname)" == "Darwin" ]; then
-    brew install zsh
+    brew install zsh fzf ripgrep
   elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     sudo apt-get update
-    sudo apt install -y zsh
+    sudo apt install -y zsh fzf ripgrep
   fi
 }
 
