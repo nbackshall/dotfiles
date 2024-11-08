@@ -17,3 +17,4 @@ vim.opt.expandtab = true
 vim.opt.number = true
 
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
+vim.keymap.set({ 'n', 'v' }, '<C-c>', '"*y')
