@@ -18,3 +18,7 @@ vim.opt.number = true
 
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 vim.keymap.set({ 'n', 'v' }, '<C-c>', '"*y')
+
+-- Set key to match delimiter from '%' to 'm'
+-- This is useful for matching brackets, quotes, etc.
+vim.keymap.set('n', 'm', '%')
