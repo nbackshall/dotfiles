@@ -14,7 +14,7 @@ do_install() {
   if [ "$(uname)" == "Darwin" ]; then
     brew install neovim node
   elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    sudo wget https://github.com/neovim/neovim/releases/latest/download/nvim.appimage -O /usr/bin/nvim
+    sudo wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage -O /usr/bin/nvim
     sudo chmod +x /usr/bin/nvim
 
     sudo apt-get update
