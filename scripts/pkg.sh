@@ -24,6 +24,7 @@ do_install() {
 
     if [ "$(uname)" == "Darwin" ]; then
         brew install "${shared_packages[@]}"
+        brew install --cask font-hack-nerd-font
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
         local linux_packages=(
             build-essential

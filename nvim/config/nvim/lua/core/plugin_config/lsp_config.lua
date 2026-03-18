@@ -11,6 +11,8 @@ require('mason-lspconfig').setup({
     'pylsp',
     'jedi_language_server',
     'marksman',
+    'ts_ls',
+    'kotlin_language_server',
   }
 })
 
@@ -35,3 +37,6 @@ require('lspconfig').lua_ls.setup {
   }
 }
 require'lspconfig'.jedi_language_server.setup{on_attach = on_attach, capabilities = capabilities}
+require'lspconfig'.ts_ls.setup{on_attach = on_attach, capabilities = capabilities}
+require'lspconfig'.kotlin_language_server.setup{on_attach = on_attach, capabilities = capabilities}
+require'lspconfig'.sourcekit.setup{on_attach = on_attach, capabilities = capabilities}

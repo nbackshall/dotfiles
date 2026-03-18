@@ -9,6 +9,9 @@
 .zprofile.local
 .zcompcache/
 
+# Neovim generated
+nvim/config/nvim/plugin/packer_compiled.lua
+
 # Lua specific
 *.lua~
 *.luac

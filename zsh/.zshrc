@@ -199,4 +199,3 @@ fcp() {
 
 # Load local configurations if they exist
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
-
