@@ -17,6 +17,20 @@ is_installed() {
     type "$1" > /dev/null 2>&1
 }
 
+pkg_install() {
+    if [ "$(uname)" == "Darwin" ]; then
+        brew install "$@"
+    elif is_installed dnf; then
+        sudo dnf install -y "$@"
+    elif is_installed apt-get; then
+        sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y "$@"
+    elif is_installed yum; then
+        sudo yum install -y "$@"
+    else
+        error "No supported package manager found"
+    fi
+}
+
 # Function to create symbolic links for files in a directory
 symlink_files() {
   local source_directory="$1"

@@ -16,9 +16,11 @@ do_install() {
   elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     sudo wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage -O /usr/bin/nvim
     sudo chmod +x /usr/bin/nvim
-
-    sudo apt-get update
-    sudo apt-get install fuse3 libfuse2 nodejs -y
+    if is_installed apt-get; then
+      pkg_install fuse3 libfuse2 nodejs
+    elif is_installed dnf || is_installed yum; then
+      pkg_install fuse fuse-libs nodejs
+    fi
   fi
 }
 

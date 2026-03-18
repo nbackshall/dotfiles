@@ -26,7 +26,7 @@ do_install() {
         brew install "${shared_packages[@]}"
         brew install --cask font-hack-nerd-font
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-        local linux_packages=(
+        local deb_packages=(
             build-essential
             cmake
             dconf-cli
@@ -37,9 +37,21 @@ do_install() {
             unrar
             uuid-runtime
         )
-        sudo apt update
-        sudo DEBIAN_FRONTEND=noninteractive apt-get install -y "${shared_packages[@]}"
-        sudo DEBIAN_FRONTEND=noninteractive apt-get install -y "${linux_packages[@]}"
+        local rpm_packages=(
+            cmake
+            readline-devel
+            ncurses
+            python3-pip
+            units
+            unrar
+        )
+        if is_installed apt-get; then
+            pkg_install "${shared_packages[@]}"
+            pkg_install "${deb_packages[@]}"
+        elif is_installed dnf || is_installed yum; then
+            pkg_install "${shared_packages[@]}"
+            pkg_install "${rpm_packages[@]}"
+        fi
     fi
 }
 
