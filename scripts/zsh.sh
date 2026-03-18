@@ -18,7 +18,13 @@ do_configure() {
   info "[zsh] Configure"
   symlink_files "/$(pwd)/zsh" "$HOME"
   info "[zsh] Set as default shell"
-  sudo chsh -s $(which zsh) $(whoami)
+  if is_installed chsh; then
+    sudo chsh -s $(which zsh) $(whoami)
+  elif is_installed usermod; then
+    sudo usermod -s $(which zsh) $(whoami)
+  else
+    warn "chsh not found — add 'exec zsh' to your .bashrc or set shell manually"
+  fi
 }
 
 main() {
